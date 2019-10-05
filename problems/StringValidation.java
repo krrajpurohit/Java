@@ -1,28 +1,36 @@
 
+import java.util.Stack;
+
 public class StringValidation {
+
+	Stack<Character> myStack = new Stack<Character>();
 
 	public boolean isStringValid(String input) {
 
 		if (input.length() % 2 != 0) {
 			return false;
 		} else {
-			for (int i = 0, j = input.length() - 1; i < (input.length()) / 2; i++, j--) {
-
-				if ((int) (input.charAt(j)) - (int) (input.charAt(i)) != 2) {
-					return false;
+			for (int i = 0; i < input.length(); i++) {
+				if (input.charAt(i) == '<' || input.charAt(i) == '[') {
+					myStack.push(input.charAt(i));
+				} else {
+					if (input.charAt(i) == '>' && myStack.peek() == '<'
+							|| input.charAt(i) == ']' && myStack.peek() == '[') {
+						myStack.pop();
+					} else {
+						myStack.push(input.charAt(i));
+					}
 				}
-
 			}
-			return true;
+			return myStack.empty();
 		}
-
 	}
 
 	public static void main(String[] args) {
 
-		String input = "<<[<]]>>";
-		StringValidation validate = new StringValidation();
-		System.out.println(validate.isStringValid(input));
+		String input = "<[<[[<[]>[<>]]]>]>";
+		StringValidation test = new StringValidation();
+		System.out.println(test.isStringValid(input));
 
 	}
 
