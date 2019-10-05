@@ -1,4 +1,3 @@
-package fileHandling;
 
 import java.util.LinkedList;
 

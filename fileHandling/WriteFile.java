@@ -1,4 +1,3 @@
-package fileHandling;
 
 import java.io.File;
 import java.io.FileWriter;

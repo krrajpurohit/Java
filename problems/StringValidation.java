@@ -1,4 +1,3 @@
-package hackerrank;
 
 public class StringValidation {
 
